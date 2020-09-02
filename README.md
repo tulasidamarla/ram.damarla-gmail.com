@@ -86,22 +86,23 @@ Exploring Solr query
 -
 Sample solr search query
 -
-http://localhost:8983/solr/collection1/select?
-q=iPod&
-fq=manu:Belkin&
-sort=price asc&
-fl=name,price,features,score&
-df=text&
-wt=xml&
-start=0&rows=10&echoParams=all
 
-q -> main query<br>
-fq -> filter query<br>
-sort -> Sort results by the price field, ascending (lowest price on top).<br>
-fl -> Specifies which fields to return for each document in the results.<br>
-df -> search in the fields(text means look in all fields)<br>
-wt -> Response-writer type, such as XML, CSV, or JSON.<br>
-echoParams --> To see all the query paramters
+		http://localhost:8983/solr/collection1/select?
+		q=iPod&
+		fq=manu:Belkin&
+		sort=price asc&
+		fl=name,price,features,score&
+		df=text&
+		wt=xml&
+		start=0&rows=10&echoParams=all
+
+		q -> main query<br>
+		fq -> filter query<br>
+		sort -> Sort results by the price field, ascending (lowest price on top).<br>
+		fl -> Specifies which fields to return for each document in the results.<br>
+		df -> search in the fields(text means look in all fields)<br>
+		wt -> Response-writer type, such as XML, CSV, or JSON.<br>
+		echoParams --> To see all the query paramters
 
 Ranked Retrieval
 -
