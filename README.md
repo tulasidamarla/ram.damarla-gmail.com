@@ -106,15 +106,15 @@ echoParams --> To see all the query paramters
 Ranked Retrieval
 -
 - The key differentiator between Solr’s query processing and that of a database or other NoSQL data store is ranked retrieval. 
-- For ex, if you search using a query "ipod power", solr looks for documents that contain both words ipod or power. solr prefers the terms ipod and query equally. 
+- Wih seach query "ipod power", solr looks for documents that contain both words ipod or power. solr prefers the terms ipod and query equally. 
 - With boost query, the search `ipod power^2`, the term `power` is twice as important to the term `ipod`. Now, you may get different order of the results based on the ranking.
 
 The inverted index
 ------------------
-Solr uses Lucene’s inverted index to power its fast searching capabilities, as well as many of the additional bells and whistles it provides at query time.
-
-While a traditional database representation of multiple documents would contain a document’s ID mapped to one or more content fields containing all of the words/terms
-in that document, an inverted index inverts this model and maps each word/term in the corpus to all of the documents in which it appears.
+- Solr uses Lucene’s inverted index to power its fast searching capabilities, as well as many of the additional bells and whistles it provides at query time.
+- An inverted index inverts the traditional database model and maps each word/term in the corpus to all of the documents in which it appears.
+- A traditional database representation of multiple documents would contain a document’s ID mapped to one or more content fields containing all of the words/terms
+in that document.
 
 Here is an example of how lucene inverted index works.
 
@@ -136,46 +136,44 @@ Doc #	Content field							Term		Doc#				Term position
 												new			4,5,8				1
 
 Note: Term position is the relative position of the terms with in a document.
-Note:Original input text was split on spaces and that each term was transformed into lowercase text before being inserted into the inverted index. It is worth noting that many additional text transformations are possible, not only these simple ones; terms can be modified, added, or removed during the content-analysis process.
+Note: Original input text was split on spaces and that each term was transformed into lowercase text before being inserted into the inverted index. Many additional text transformations are possible, not only these simple ones; terms can be modified, added, or removed during the content-analysis process.
 
 Two important details should be noted about the inverted index:
-■ All terms in the index map to one or more documents.
-■ Terms in the inverted index are sorted in ascending lexicographical order.
+- All terms in the index map to one or more documents.
+- Terms in the inverted index are sorted in ascending lexicographical order.
 
 Terms, phrases, and Boolean logic
----------------------------------
-Lets look for the following search critierias.
-
-■ Search for two different terms, new and house, requiring both to match
-■ Search for two different terms, new and house, requiring only one to match
-■ Search for the exact phrase "new house"
+-
+- Sample searches
+  - Search for two different terms, new and house, requiring both to match
+  - Search for two different terms, new and house, requiring only one to match
+  - Search for the exact phrase "new house"
 
 REQUIRED TERMS
---------------
-If the query into multiple terms and requiring them all to match, then there are two ways to write query.
-a)+new +house
-b)new AND house (This gets parsed into the above)
+-
+- If the query has multiple terms and requiring them all to match, query is:
+  - +new +house
+  - new AND house (This gets parsed into the above)
 
 OPTIONAL TERMS
---------------
-If either the part of the query preceding or the part of the query following it is required to exist in any documents matched, then query can be written in the following two ways.
-a)new house
-b)new OR house(OR is the default operator)
+-
+- If query has multiple terms and neither of them are not mandatory, query is:
+- new house
+- new OR house(OR is the default operator)
 
 NEGATED TERMS
--------------
-It’s also possible to require that some query parts not exist in any matched documents through either of the following equivalent queries:
-■ new house –rental
-■ new house NOT rental
+-
+- It’s also possible to require that some query parts not exist in any matched documents through either of the following equivalent queries:
+  - new house –rental
+  - new house NOT rental
 
-Note: If we want to change the default operator, we can do that using the below query.
-/select?q=new house&q.op=AND
+- To change the default operator, query is `/select?q=new house&q.op=AND`
 
 PHRASES
--------
-Solr can also search for phrases,ensuring that multiple terms appear together in order. For ex,
-■ "new home" OR "new house"
-■ "3 bedrooms" AND "walk in closet" AND "granite countertops"
+-
+- Solr can also search for phrases,ensuring that multiple terms appear together in order. For ex,
+  - "new home" OR "new house"
+  - "3 bedrooms" AND "walk in closet" AND "granite countertops"
 
 GROUPED EXPRESSIONS
 -------------------
