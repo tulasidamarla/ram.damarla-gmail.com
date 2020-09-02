@@ -45,59 +45,47 @@ DON’T USE A SEARCH ENGINE TO
 - No provision for document level security. If fine-grained permissions on documents is needed, then it has to be handled outside of the search engine i.e application.
 
 Features overview
------------------
+-
 Solr provides a number of important features that help you deliver a search solution that’s easy to use, intuitive, and powerful. It provides the following features.
 
 User experience
----------------
-■ Pagination and sorting
-■ Faceting
-■ Autosuggest
-■ Spell-checking
-■ Hit highlighting
-■ Geospatial search
+-
+- Pagination and sorting
+- Faceting
+- Autosuggest
+- Spell-checking
+- Hit highlighting
+- Geospatial search
 
 Data Modelling
---------------
-■ Result grouping/field collapsing
-■ Flexible query support
-■ Joins
-■ Document clustering
-■ Importing rich document formats such as PDF and Word
-■ Importing data from relational databases
-■ Multilingual support
+-
+- Result grouping/field collapsing
+- Flexible query support
+- Joins
+- Document clustering
+- Importing rich document formats such as PDF and Word
+- Importing data from relational databases
+- Multilingual support
 
 Solr terminology
-----------------
-
-Index
------
-Like an index in book, solr index also contains content. By adding content to an index, it can be used for search later.
-
-Core
-----
-A core is composed of a set of configuration files, Lucene index files, and Solr’s transaction log. A core typically indexes documents of one type.(It is like a table in DB)
-
-A solr server can have more than one core.
-
-Shard
------
-If an index becomes large it can be split across multple nodes/servers. Each node is a shard.
-
-Replica
--------
-For increasing search performance an index of a shard can be replicated into multiple nodes.
-
-Collection
-----------
-Collection is a term which only has meaning in the context of solr cluster, in which a single index is split across multiple servers. In other words it's a logical grouping of data available in different shards of a single core. 
+-
+- Index
+  - Like an index in book, solr index also contains content. By adding content to an index, it can be used for search later.
+- Core
+  - A core is composed of a set of configuration files, Lucene index files, and Solr’s transaction log. A core typically indexes documents of one type.(It is like a table in DB). A solr server can have more than one core.
+- Shard
+  - If an index becomes large it can be split across multple nodes/servers. Each node is a shard.
+- Replica
+  - For increasing search performance an index of a shard can be replicated into multiple nodes.
+- Collection
+  - Collection (in the context of solr cluster), in which a single index is split across multiple servers. It's logical grouping of data available in different shards of a single core.
 
 Note: In case of single node solr server, A collection is nothing but a core.
 
 Exploring Solr query
---------------------
+-
 Sample solr search query
-------------------------
+-
 http://localhost:8983/solr/collection1/select?
 q=iPod&
 fq=manu:Belkin&
@@ -107,19 +95,19 @@ df=text&
 wt=xml&
 start=0&rows=10&echoParams=all
 
-q -> main query
-fq -> filter query
-sort -> Sort results by the price field, ascending (lowest price on top).
-fl -> Specifies which fields to return for each document in the results.
-df -> search in the fields(text means look in all fields)
-wt -> Response-writer type, such as XML, CSV, or JSON.
+q -> main query<br>
+fq -> filter query<br>
+sort -> Sort results by the price field, ascending (lowest price on top).<br>
+fl -> Specifies which fields to return for each document in the results.<br>
+df -> search in the fields(text means look in all fields)<br>
+wt -> Response-writer type, such as XML, CSV, or JSON.<br>
 echoParams --> To see all the query paramters
 
 Ranked Retrieval
-----------------
-The key differentiator between Solr’s query processing and that of a database or other NoSQL data store is ranked retrieval. For ex, if you search using a query "ipod power", solr looks for documents that contain both words ipod or power. That means it gives equal preference to the terms ipod and query. 
-
-If we use the boost query, with the search "ipod power^2", you are mentioning the term power is twice as important to the term ipod. Now, you may get different order of the results based on the ranking.
+-
+- The key differentiator between Solr’s query processing and that of a database or other NoSQL data store is ranked retrieval. 
+- For ex, if you search using a query "ipod power", solr looks for documents that contain both words ipod or power. solr prefers the terms ipod and query equally. 
+- With boost query, the search `ipod power^2`, the term `power` is twice as important to the term `ipod`. Now, you may get different order of the results based on the ranking.
 
 The inverted index
 ------------------
