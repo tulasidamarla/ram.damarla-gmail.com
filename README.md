@@ -119,22 +119,22 @@ in that document.
 
 Here is an example of how lucene inverted index works.
 
-Original documents								Lucene’s inverted index	
-Doc #	Content field							Term		Doc#				Term position
-1	A Fun Guide to Cooking						a		1,3,4,5,6,7,8				1
-2	Decorating Your Home						becoming	8					4
-3	How to Raise a Child						beginner’s	6					5
-4	Buying a New Car						buy		9					1
-5	Buying a New Home						buying		4,5,6					2
-6	The Beginner’s Guide to Buying a House				car		4					4
-7	Purchasing a Home						child		3					5
-8	Becoming a New Home Owner					cooking		1					1
-9	How to Buy Your First House 					decorating	2					3
-									first		9					2
-									fun		1					5
-									home		2,5,7,8					4
-									house		6,9					6
-									new		4,5,8					1
+		Original documents								Lucene’s inverted index	
+		Doc #	Content field							Term		Doc#				Term position
+		1	A Fun Guide to Cooking						a		1,3,4,5,6,7,8				1
+		2	Decorating Your Home						becoming	8					4
+		3	How to Raise a Child						beginner’s	6					5
+		4	Buying a New Car						buy		9					1
+		5	Buying a New Home						buying		4,5,6					2
+		6	The Beginner’s Guide to Buying a House				car		4					4
+		7	Purchasing a Home						child		3					5
+		8	Becoming a New Home Owner					cooking		1					1
+		9	How to Buy Your First House 					decorating	2					3
+											first		9					2
+											fun		1					5
+											home		2,5,7,8					4
+											house		6,9					6
+											new		4,5,8					1
 
 
 - Term position is the relative position of a term with in the document.
