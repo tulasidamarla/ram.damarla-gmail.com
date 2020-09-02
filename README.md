@@ -1,46 +1,48 @@
-Search engines like Solr are optimized to handle data exhibiting four main characteristics:
-1 Text-centric
-2 Read-dominant
-3 Document-oriented
-4 Flexible schema
+Search engine characteristics
+-
+Search engines like Solr are optimized to handle data exhibiting four main characteristics:<br>
+- Text-centric<br>
+- Read-dominant<br>
+- Document-oriented<br>
+- Flexible schema
 
 Common Search engine use cases
-------------------------------
+-
 
 Basic Keyword search
---------------------
-Users don't want to fill some complex form to get the results. In general, users want to type in a few simple keywords and get back great results.
+-
+- Users don't want to fill some complex form to get the results. In general, users want to type in a few simple keywords and get back great results.
 
-To provide a great user experience the following few issues must be addressed.
-
-■ Relevant results must be returned quickly, within a second or less in most cases.
-■ Spelling correction is needed in case the user misspells some of the query terms.
-■ Autosuggestions save keystrokes, particularly for mobile applications.
-■ Synonyms of query terms must be recognized.
-■ Documents containing linguistic variations of query terms must be matched.
-■ Phrase handling is needed; that is, does the user want documents matching all words or any of the words in a phrase.
-■ Queries with common words like “a,” “an,” “of,” and “the” must be handled properly.
-■ The user must have a way to see more results if the top results aren’t satisfactory.
+- To provide a great user experience the following few issues must be addressed.
+  - Relevant results must be returned quickly, within a second or less in most cases.
+  - Spelling correction is needed in case the user misspells some of the query terms.
+  - Autosuggestions save keystrokes, particularly for mobile applications.
+  - Synonyms of query terms must be recognized.
+  - Documents containing linguistic variations of query terms must be matched.
+  - Phrase handling is needed; that is, does the user want documents matching all words or any of the words in a phrase.
+  - Queries with common words like “a,” “an,” “of,” and “the” must be handled properly.
+  - The user must have a way to see more results if the top results aren’t satisfactory.
 
 RANKED RETRIEVAL
-----------------
-In an SQL query to a relational database, a row either matches a query or it doesn’t, and results are sorted based on one or more of the columns. A search engine returns documents
-sorted in descending order by a score that indicates the strength of the match of the document to the query. Ranking documents by relevancy is important because modern search engines store large volumes of data. Without ranking users can become overloaded with results with no clear way of navigate them.
+-
+- With SQL query to an RDBMS a row either matches a query or it doesn’t, and results are sorted based on one or more of the columns. 
+- A search engine returns documents sorted in descending order by a score that indicates the strength of the match of the document to the query. 
+- Ranking documents by relevancy is important because modern search engines store large volumes of data. 
+- Without ranking users can become overloaded with results with no clear way of navigate them.
 
 BEYOND KEYWORD SEARCH
----------------------
-Typically users don't have knowledge of what information is present in your system. A good search engine helps users narrow in on their information needs.The central idea here is to return documents from an initial query, as well as tools to help users refine their search. For example, categorize search results using document features to allow users to
-narrow down their results. This is known as faceted search, and it’s one of the main strengths of Solr.
+-
+- Typically users don't have knowledge of what information is present in your system. 
+- A good search engine helps users narrow in on their information needs.
+- To return documents from an initial query, as well as tools to help users refine their search. For example, categorize search results using document features to allow users to narrow down their results. This is known as faceted search, and it’s one of the main strengths of Solr.
 
 DON’T USE A SEARCH ENGINE TO
-----------------------------
-
-a)Retrieving huge no of records: Search engines are designed to return a small set of documents per query, usually 10 to 100. you can use pagination for next set of matching records. But, if you want all records at once reconstructing a huge no of documents from the underlying index structure will be extremely slow, as engines like Solr store fields on
-disk.
-
-b)Search engines aren’t the place for querying across relationships between documents. Solr does support querying using a parent-child relationship, but doesn’t provide support for navigating complex relational structures as is possible with SQL.
-
-c)No provision for document level security. If you need fine-grained permissions on documents, then you’ll have to handle that outside of the search engine.
+-
+- Retrieving huge no of records: Search engines are designed to return a small set of documents per query, usually 10 to 100. 
+  - pagination can be used for next set of matching records. But, retrieving all records at once reconstructing a huge no of documents from the underlying index structure will be extremely slow, as engines like Solr store fields on disk.
+- Search engines aren’t the place for querying across relationships between documents. 
+  - Solr does support querying using a parent-child relationship, but doesn’t provide support for navigating complex relational structures as is possible with SQL.
+- No provision for document level security. If fine-grained permissions on documents is needed, then it has to be handled outside of the search engine i.e application.
 
 Features overview
 -----------------
